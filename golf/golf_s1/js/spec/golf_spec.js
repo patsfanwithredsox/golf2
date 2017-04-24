@@ -33,10 +33,11 @@ describe("A program to calculate golf handicap indexs", () => {
      .toEqual(3);
     });
 
-	it('calculates the official Handicap Index', function () {
-     expect(index.officalIndex([3,4,5,5,4,6,4,3,5,3,4,4,4,5,3,4,5,4]))
+  it('calculates the official Handicap Index', function () {
+     expect(index.officalIndex([3,4,5,5,4,6,4,3,5,3,4,4,4,5,3,4,5,4], 71.5, 124))
      .toEqual(3);
     });
+
 
   });
 

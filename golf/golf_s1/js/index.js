@@ -6,44 +6,49 @@ function totalStrokes(scores) {
 
 // subtracts course rating from total
 
-function subtract(total, rating){
-	return (total - rating);
+function subtract(totalStrokes, rating){
+	return (totalStrokes - rating);
 }
 
 //multipies the difference by 113
 
-function multiply(difference){
-	return (difference * 113);
+function multiply(subtract){
+	return (subtract * 113);
 }
 
 //divedes the product by the slope rating of the course to find the differential	
-function divide(product, slope){
-	return (product / slope);
+function divide(multiply, slope){
+	return (multiply / slope);
 }
 
 //calculates the the non-truncated Handicap Index
-function finalIndex(differential){
-	return (differential * 0.96);
+function finalIndex(divide){
+	return (divide * 0.96);
 }
 
 //truncates the Handicap Index to a whole integer for use in Tournaments and USGA Membership 
-function truncate(Index){
-	return (Math.trunc(Index));
+function truncate(finalIndex){
+	return (Math.trunc(finalIndex));
 }
 
 
-	
 
-module.exports.officalIndex = scores =>  {
+//puts all the functions together to form the full program
+module.exports.officalIndex = (scores, rating, slope) =>  {
 	let totalStroke = this.totalStrokes(scores);
-	let subtracts = this.subtract(totalStroke);
+	
+	let subtracts = this.subtract(totalStroke, rating);
+		
 	let multiplys = this.multiply(subtracts);
-	let divides = this.divide(multiplys);
+	
+	let divides = this.divide(multiplys, slope);
+		
 	let FinalIndex = this.finalIndex(divides);
+	
 	let truncates = this.truncate(FinalIndex);
-		return truncate;
+		
+		return truncates;
 };
-
 
 
 module.exports.totalStrokes = totalStrokes;
